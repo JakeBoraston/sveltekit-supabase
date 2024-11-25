@@ -6,7 +6,7 @@
 
 <Card.Root class="mx-auto max-w-md">
 	<Card.Header>
-		<Card.Title class="text-3xl font-thin">Login</Card.Title>
+		<Card.Title class="text-3xl">Login</Card.Title>
 		<Card.Description>Choose a provider to login with</Card.Description>
 	</Card.Header>
 	<Card.Content>

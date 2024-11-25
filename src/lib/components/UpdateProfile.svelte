@@ -5,20 +5,33 @@
 	import * as Card from '$lib/components/ui/card/index';
 	import Input from '$lib/components/ui/input/input.svelte';
 	import Label from '$lib/components/ui/label/label.svelte';
+	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 
 	export let userProfile;
 	export let avatar;
 </script>
 
+<!-- Settings -->
+<Card.Root class="mx-auto mb-4 max-w-md p-5">
+	<Card.Title class="text-3xl">Settings</Card.Title>
+	<Card.Content class="p-2">
+		<ThemeToggle />
+		<a>
+			<Button variant="outline" href="/auth/logout" class="w-full my-4">Sign out of app</Button>
+		</a>
+	</Card.Content>
+</Card.Root>
+
+<!-- Profile -->
 <Card.Root class="mx-auto max-w-md">
 	<Card.Header>
-		<Card.Title class="text-3xl font-thin">Profile</Card.Title>
+		<Card.Title class="text-3xl">Profile</Card.Title>
 		<Card.Description>Update your profile information</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		{#if avatar}
 			<div class="flex justify-start">
-				<img src={avatar} alt="user avatar" class="mb-5 h-24 w-24 rounded-lg object-cover shadow" />
+				<img src={avatar} alt="user avatar" class="mb-5 h-24 w-24 rounded-lg object-cover" />
 			</div>
 		{/if}
 		<form

@@ -2,8 +2,8 @@
 	import '../app.css';
 	import { goto, invalidate } from '$app/navigation';
 	import { ModeWatcher } from 'mode-watcher';
-	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	import { Button } from '$lib/components/ui/button';
+	import * as Avatar from '$lib/components/ui/avatar';
 
 	const { data: propsData, children } = $props();
 
@@ -32,28 +32,23 @@
 <ModeWatcher />
 
 <div class="flex min-h-screen flex-col">
-	<nav class="border-b p-2">
-		<div class="mx-auto flex w-full max-w-2xl items-center justify-between">
-			<a href="/" class="text-2xl font-bold">App</a>
-
-			<div class="flex gap-2">
-				<ThemeToggle />
-				{#if session !== null}
-					<Button href="/auth/logout">logout</Button>
-				{/if}
-			</div>
+	<nav class="p-4">
+		<div class="mx-auto flex flex w-full max-w-2xl justify-between">
+			{#if session !== null}
+				<a href="/" class="text-2xl font-black">Strength App</a>
+				<a href="/profile">
+					<Avatar.Root>
+						<Avatar.Image src={session.user.user_metadata.avatar_url} alt="Profile picture" />
+						<Avatar.Fallback>{session.user.user_metadata.user_name[0]}</Avatar.Fallback>
+					</Avatar.Root>
+				</a>
+			{/if}
 		</div>
 	</nav>
 
 	<main class="mx-auto w-full max-w-2xl flex-grow px-2 py-5 md:px-0">
 		{@render children()}
 	</main>
-
-	<footer class="w-full border-t py-5">
-		<div class="mx-auto flex w-full max-w-2xl items-center justify-center">
-			<a href="https://github.com/engageintellect" class="text-sm">@engageintellect</a>
-		</div>
-	</footer>
 </div>
 
 <style>
@@ -62,5 +57,8 @@
 		height: 100%;
 		margin: 0;
 		padding: 0;
+	}
+	* {
+		font-family: 'Inter', sans-serif;
 	}
 </style>
